@@ -1,0 +1,32 @@
+{
+  "name": "ZFSManager",
+  "version": "1.0.0",
+  "description": "ZFS Management script",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/binRick/ZFSManager"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/binRick/ZFSManager/issues"
+  },
+  "homepage": "https://github.com/binRick/ZFSManager",
+  "dependencies": {
+    "MD5": "^1.2.1",
+    "async": "^0.9.0",
+    "chalk": "^1.0.0",
+    "cli-table": "^0.3.1",
+    "express": "^4.12.2",
+    "node-status": "^0.1.4",
+    "pretty-json": "^0.1.1",
+    "pretty-tree": "^1.0.0",
+    "ps-tree": "0.0.3",
+    "trim": "0.0.1",
+    "underscore": "^1.8.2"
+  }
+}
