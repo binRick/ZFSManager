@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+var serverName = process.argv[2] || 'cancer';
+
 var getServers = require('./CollectServersFromZfsSnapshotList.js'),
     pj = require('prettyjson');
 
@@ -10,9 +12,10 @@ config = require('./config'),
     db = flatfile(config.Caching.File);
 
 db.on('open', function() {
-    getServers(db, 'Snapshots', function(e, Servers) {
+    getServers({db:db, servers: [serverName]}, 'Snapshots', function(e, Servers) {
         if (e) throw e;
-        pj.render(Servers);
+ //       console.log(Servers);
+//        pj.render(Servers);
     });
 
 });

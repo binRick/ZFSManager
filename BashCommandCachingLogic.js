@@ -8,11 +8,11 @@
     module.exports = {
         Sync: function(Database, Hash, BashCommand) {
             if (Database.has(Hash)) {
-console.log(chalk.black.bgGreen('cache hit'));
-//                Caches.Hits.Status.inc();
+                console.log(chalk.black.bgGreen('cache hit for command: ', chalk.black.bgWhite(BashCommand)));
+                //                Caches.Hits.Status.inc();
                 return Database.get(Hash);
             } else {
-console.log(chalk.white.bgRed('cache miss. performing command: ', chalk.black.bgWhite(BashCommand)));
+                console.log(chalk.white.bgRed('cache miss. performing command: ', chalk.black.bgWhite(BashCommand)));
                 var Data = ProcessExecutor.execSyncLines(BashCommand);
                 if (Data.length > 0) {
                     Database.put(Hash, Data);
