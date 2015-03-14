@@ -1,19 +1,13 @@
-var md5 = require('MD5');
+var BashCommandCachingLogic = require('./BashCommandCachingLogic');
 
 
-
-var TotalServers = {
-    cmd: "zfs list -o name -H | grep '/Snapshots/'| cut -d'/' -f3| sort | uniq",
+module.exports = function(snapShotMatch, cb) {
+    snapShotMatch = snapShotMatch || 'Snapshots';
+    cb = cb || function(){};
+    var TotalServers = {
+        cmd: "zfs list -o name -H | grep '/" + snapShotMatch + "/'| cut -d'/' -f3| sort | uniq",
+    };
+    TotalServers.hash = md5(TotalServers.cmd);
+    TotalServers.List = BashCommandCachingLogic.sync(TotalServers);
+    cb(null, TotalServers);
 };
-TotalServers.hash = md5(TotalServers.cmd);
-if (db.has(md5(TotalServers.hash))) {
-    TotalServers.list = db.get(TotalServers.hash);
-    Caches.Hits.Status.inc();
-} else {
-    TotalServers.list = exec(TotalServers.cmd);
-    Caches.Misses.Status.inc();
-    db.put(TotalServers.hash, TotalServers.list);
-    Caches.Writes.Status.inc();
-}
-
-TotalServers.list = [TotalServers.list[3]];

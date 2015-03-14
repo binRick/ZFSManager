@@ -16,8 +16,7 @@ module.exports = {
         process.exit();
         return JSON.parse(child.execSync(c).toString());
     },
-    exec: function(c) {
-        process.exit();
+    execSyncLines: function(c) {
         return lineFilter(child.execSync(c, Encoding));
     },
     execRaw: function(c) {
