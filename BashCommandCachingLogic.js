@@ -7,7 +7,7 @@
 
     module.exports = {
         Sync: function(Database, Hash, BashCommand) {
-            if (Database.has(Hash)) {
+            if (false){//Database.has(Hash)) {
                 console.log(chalk.black.bgGreen('cache hit for command: ', chalk.black.bgWhite(BashCommand)));
                 //                Caches.Hits.Status.inc();
                 return Database.get(Hash);
@@ -15,7 +15,7 @@
                 console.log(chalk.white.bgRed('cache miss. performing command: ', chalk.black.bgWhite(BashCommand)));
                 var Data = ProcessExecutor.execSyncLines(BashCommand);
                 if (Data.length > 0) {
-                    Database.put(Hash, Data);
+ //                   Database.put(Hash, Data);
                     //Caches.Writes.Status.inc();
                 }
                 return Data;
