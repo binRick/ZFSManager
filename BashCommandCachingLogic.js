@@ -6,25 +6,16 @@
 
 
     module.exports = {
-        Sync: function(Database, Hash, BashCommand) {
-            if (false){//Database.has(Hash)) {
-                console.log(chalk.black.bgGreen('cache hit for command: ', chalk.black.bgWhite(BashCommand)));
-                //                Caches.Hits.Status.inc();
-                return Database.get(Hash);
-            } else {
-                console.log(chalk.white.bgRed('cache miss. performing command: ', chalk.black.bgWhite(BashCommand)));
-                var Data = ProcessExecutor.execSyncLines(BashCommand);
-                if (Data.length > 0) {
- //                   Database.put(Hash, Data);
-                    //Caches.Writes.Status.inc();
-                }
+        SyncRaw: function(Hash, BashCommand) {
+                var Data = ProcessExecutor.execSyncLinesRaw(BashCommand);
                 return Data;
-            }
         },
-        Async: function(Database, Hash, BashCommand, cb) {
-            Database.on('open', function() {
+        Sync: function(Hash, BashCommand) {
+                var Data = ProcessExecutor.execSyncLinesRaw(BashCommand);
+                return Data;
+        },
+        Async: function(Hash, BashCommand, cb) {
                 var Data = '';
                 cb(null, Data);
-            });
         },
     };

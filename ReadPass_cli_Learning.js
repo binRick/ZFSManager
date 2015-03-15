@@ -1,11 +1,15 @@
 var path = require('path'),
-    nexpect = require('../lib/nexpect');
+    nexpect = require('nexpect'),
+    fs = require('fs');
 
-nexpect.spawn(path.join(__dirname, '..', 'test', 'fixtures', 'prompt-and-respond'), {
-        stripColors: true
+var secret = fs.readFileSync('/root/.pass') || 'test123';
+var user = fs.readFileSync('/root/.user') || 'root';
+
+nexpect.spawn('ssh missouri zpool list', {
+        stripColors: true,
     })
-    .wait('first')
-    .sendline('first-prompt')
+    .wait('Username')
+    .sendline(user)
     .expect('first-prompt')
     .wait('second')
     .sendline('second-prompt')

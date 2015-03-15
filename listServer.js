@@ -1,22 +1,27 @@
 #!/usr/bin/env node
 
-var serverName = process.argv[2] || 'cancer';
-
 var getServers = require('./CollectServersFromZfsSnapshotList.js'),
-    pj = require('prettyjson');
-
-
-config = require('./config'),
+    getPids = require('./Collect_Pids'),
+    pj = require('prettyjson'),
+    config = require('./config'),
     md5 = require('MD5'),
-    flatfile = require('flat-file-db'),
-    db = flatfile(config.Caching.File);
+    _ = require('underscore'),
+    async = require('async'),
+    chalk = require('chalk');
 
-db.on('open', function() {
-    getServers({db:db, servers: [serverName]}, 'Snapshots', function(e, Servers) {
+var treeify = require('treeify');
+
+var serverName = process.argv[2] || 'cancer';
+var ProcessServerList = require('./ProcessServers');
+
+getServers(serverName, function(e, Servers) {
+    if (e) throw e;
+    ProcessServerList(Servers, function(e, Processed) {
         if (e) throw e;
- //       console.log(Servers);
-//        pj.render(Servers);
+            console.log(pj.render(Processed));
+            treeify.asLines(Processed, true, function(line) {
+                       console.log(chalk.white(line));
+            });
+
     });
-
 });
-
