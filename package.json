@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/binRick/ZFSManager",
   "dependencies": {
-    "MD5": "^1.2.1",
+    "MD5": "~1.2.1",
     "async": "^0.9.0",
     "chalk": "^1.0.0",
     "cli-meter": "0.0.1",
@@ -30,6 +30,14 @@
     "pretty-tree": "^1.0.0",
     "ps-tree": "0.0.3",
     "trim": "0.0.1",
-    "underscore": "^1.8.2"
+    "underscore": "^1.8.2",
+    "prettyjson": "~1.1.0",
+    "nexpect": "~0.5.0",
+    "treeify": "~1.0.1",
+    "c-log": "0.0.3",
+    "blessed": "0.0.51",
+    "blessed-contrib": "~1.0.14",
+    "node-cli": "~0.1.0",
+    "md5": "~1.0.0"
   }
 }

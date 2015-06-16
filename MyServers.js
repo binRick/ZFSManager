@@ -1,4 +1,5 @@
-var BashCommandCachingLogic = require('./BashCommandCachingLogic');
+var BashCommandCachingLogic = require('./BashCommandCachingLogic'),
+md5 = require('MD5');
 
 
 module.exports = function(snapShotMatch, cb) {
