@@ -10,6 +10,8 @@ var trim = require('trim'),
             return l.length > 3;
         });
     };
+child.execSync = child.execSync || require('exec-sync');
+
 
 module.exports = {
     execJson: function(c) {

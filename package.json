@@ -25,6 +25,7 @@
     "chalk": "^1.0.0",
     "cli-meter": "0.0.1",
     "cli-table": "^0.3.1",
+    "exec-sync": "^0.1.6",
     "express": "^4.12.4",
     "flat-file-db": "^0.1.4",
     "md5": "~1.0.0",
